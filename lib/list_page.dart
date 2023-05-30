@@ -13,13 +13,14 @@ class ListPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
-            mainAxisSize: MainAxisSize.min, //Altura minima da coluna
+            mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: emailController,
                 decoration: InputDecoration(
                   labelText: 'E-mail',
                 ),
+                onChanged: onSubmitted,
               ),
               ElevatedButton(
                 onPressed: login,
@@ -34,7 +35,15 @@ class ListPage extends StatelessWidget {
   void login(){
     String text = emailController.text;
     print(text);
-    //emailController.clear(); limpar campo
-    //emailController.text = 'Ailton'; alterar texto do campo
+  }
+
+  //Opção onde o usuario ira precisar aperta o botao
+  // para enviar um dado. mais usado em web
+  void onSubmitted(String text){
+    print(text);
   }
 }
+  /*void onChanged(String text){
+    print(text);
+  }
+}*/
