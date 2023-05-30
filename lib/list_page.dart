@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ListPage extends StatelessWidget {
-  const ListPage({Key? key}) : super(key: key);
+  ListPage({Key? key}) : super(key: key);
+
+  //Controle de texto
+  TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -9,30 +12,29 @@ class ListPage extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: TextField(
-            decoration: InputDecoration(
-              labelText: 'E-mail',
-              hintText: 'Exemplo@gmail.com',
-              //border: OutlineInputBorder(),
-              //errorText: 'Campo obrigatorio',
-              prefixText: 'R\$ ', //Inicio do texto fixo
-              suffixText: 'cm', suffixStyle: TextStyle(color: Colors.red), //final do texto fixo
-              labelStyle: TextStyle(
-                fontSize: 40,
+          child: Column(
+            mainAxisSize: MainAxisSize.min, //Altura minima da coluna
+            children: [
+              TextField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  labelText: 'E-mail',
+                ),
               ),
-            ),
-            style: TextStyle(
-              //fontSize: 40, //Tamanho da fonte
-              fontWeight: FontWeight.w400, //peso da fonte
-              color: Colors.purple,
-            ),
-            //keyboardType: TextInputType.number,
-            //keyboardType: TextInputType.emailAddress,
-            //obscureText: true, //Esconder texto
-            //obscuringCharacter: 'Y', // Modificar caractere
+              ElevatedButton(
+                onPressed: login,
+                child: Text('Entrar'),
+              )
+            ],
           ),
         ),
       ),
     );
+  }
+  void login(){
+    String text = emailController.text;
+    print(text);
+    //emailController.clear(); limpar campo
+    //emailController.text = 'Ailton'; alterar texto do campo
   }
 }
