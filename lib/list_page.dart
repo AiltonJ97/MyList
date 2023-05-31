@@ -11,20 +11,24 @@ class ListPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Row(
             children: [
-              TextField(
-                controller: emailController,
-                decoration: InputDecoration(
-                  labelText: 'E-mail',
+              //Ajustar o Textfield para ocupar o tamanho maximo da tela quando
+              //dentro de uma Row.
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Adicione um tarefa',
+                    hintText: 'Ex: Estudar Java',
+                  ),
                 ),
-                onChanged: onSubmitted,
               ),
+              SizedBox(width: 8),
               ElevatedButton(
                 onPressed: login,
-                child: Text('Entrar'),
+                child: Text("+"),
               )
             ],
           ),
@@ -32,18 +36,9 @@ class ListPage extends StatelessWidget {
       ),
     );
   }
-  void login(){
+
+  void login() {
     String text = emailController.text;
     print(text);
   }
-
-  //Opção onde o usuario ira precisar aperta o botao
-  // para enviar um dado. mais usado em web
-  void onSubmitted(String text){
-    print(text);
-  }
 }
-  /*void onChanged(String text){
-    print(text);
-  }
-}*/
