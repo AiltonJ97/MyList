@@ -28,8 +28,15 @@ class ListPage extends StatelessWidget {
               SizedBox(width: 8),
               ElevatedButton(
                 onPressed: login,
-                child: Text("+"),
-              )
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xff6FFFF7),
+                  padding: EdgeInsets.all(14),
+                ),
+                child: Icon(
+                  Icons.add,
+                  size: 30,
+                ),
+              ),
             ],
           ),
         ),
