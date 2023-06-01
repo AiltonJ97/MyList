@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 
-class ListPage extends StatelessWidget {
+class ListPage extends StatefulWidget {
   ListPage({Key? key}) : super(key: key);
 
+  @override
+  State<ListPage> createState() => _ListPageState();
+}
+
+class _ListPageState extends State<ListPage> {
   //Controle de texto
-  TextEditingController emailController = TextEditingController();
+  final TextEditingController tarefaController = TextEditingController();
+
+  //Criando lista
+  List<String> tarefas = [];
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +29,7 @@ class ListPage extends StatelessWidget {
                   //dentro de uma Row.
                   Expanded(
                     child: TextField(
+                      controller: tarefaController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Adicione um tarefa',
@@ -30,7 +39,13 @@ class ListPage extends StatelessWidget {
                   ),
                   SizedBox(width: 8),
                   ElevatedButton(
-                    onPressed: login,
+                    onPressed: () {
+                      String text = tarefaController.text;
+                      setState(() {
+                        tarefas.add(text);
+                      });
+                      tarefaController.clear();
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xff6FFFF7),
                       padding: EdgeInsets.all(14),
@@ -42,15 +57,21 @@ class ListPage extends StatelessWidget {
                   ),
                 ],
               ),
-              ListView(
-                shrinkWrap: true,
-                children: [
-                  Container(
-                    color: Colors.red,
-                    width: 50,
-                    height: 50,
-                  ),
-                ],
+              //Flexible corrige o erro do shrinkWrap.
+              Flexible(
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    for(String tarefa in tarefas)
+                      ListTile(
+                        title: Text(tarefa),
+                        leading: Icon(Icons.note_alt),
+                        onTap: (){
+                          print('Tarefa: $tarefa');
+                        },
+                      ),
+                  ],
+                ),
               ),
               SizedBox(height: 16),
               Row(
@@ -77,10 +98,5 @@ class ListPage extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void login() {
-    String text = emailController.text;
-    print(text);
   }
 }
