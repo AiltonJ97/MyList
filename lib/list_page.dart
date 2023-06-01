@@ -12,30 +12,53 @@ class ListPage extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Row(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              //Ajustar o Textfield para ocupar o tamanho maximo da tela quando
-              //dentro de uma Row.
-              Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Adicione um tarefa',
-                    hintText: 'Ex: Estudar Java',
+              Row(
+                children: [
+                  //Ajustar o Textfield para ocupar o tamanho maximo da tela quando
+                  //dentro de uma Row.
+                  Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Adicione um tarefa',
+                        hintText: 'Ex: Estudar Java',
+                      ),
+                    ),
                   ),
-                ),
+                  SizedBox(width: 8),
+                  ElevatedButton(
+                    onPressed: login,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xff6FFFF7),
+                      padding: EdgeInsets.all(14),
+                    ),
+                    child: Icon(
+                      Icons.add,
+                      size: 30,
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(width: 8),
-              ElevatedButton(
-                onPressed: login,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xff6FFFF7),
-                  padding: EdgeInsets.all(14),
-                ),
-                child: Icon(
-                  Icons.add,
-                  size: 30,
-                ),
+              SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Você possui 0 terefas pendentes',
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text('Limpar Tudo'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xff6FFFF7),
+                      padding: EdgeInsets.all(14),
+                    ),
+                  )
+                ],
               ),
             ],
           ),
