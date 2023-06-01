@@ -42,6 +42,16 @@ class ListPage extends StatelessWidget {
                   ),
                 ],
               ),
+              ListView(
+                shrinkWrap: true,
+                children: [
+                  Container(
+                    color: Colors.red,
+                    width: 50,
+                    height: 50,
+                  ),
+                ],
+              ),
               SizedBox(height: 16),
               Row(
                 children: [
@@ -52,7 +62,9 @@ class ListPage extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {},
-                    child: Text('Limpar Tudo'),
+                    child: Text(
+                      'Limpar Tudo',
+                    ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xff6FFFF7),
                       padding: EdgeInsets.all(14),
